@@ -1,0 +1,36 @@
+.banner {
+  height: 60vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* 배너 앞 그라디언트 */
+.banner::before {
+  content: "";
+  background: linear-gradient(to top, black, transparent);
+  height: 60vh;
+  width: 100%;
+  position: absolute;
+  left: 0;
+}
+
+.banner-text-area {
+  width: 37%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  padding: 2rem;
+}
+
+.banner-text-area > * {
+  z-index: 2;
+}
+
+/* banner 안 text 흘러 넘치지 않게 */
+@media (max-width: 630px) {
+  .banner-text-area {
+    width: 100%;
+  }
+}
