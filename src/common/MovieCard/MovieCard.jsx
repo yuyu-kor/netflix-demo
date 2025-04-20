@@ -1,13 +1,27 @@
 import React from "react";
 import "./MovieCard.style.css";
-import PopularMovieSlide from "../PopularMovieSlide/PopularMovieSlide";
-import TopRatedMovieSlide from "../TopRatedMovieSlide/TopRatedMovieSlide";
-import UpcomingMovieSlide from "../UpcomingMovieSlide/UpcomingMovieSlide";
+import PopularMovieSlide from "../../pages/Homepage/components/PopularMovieSlide/PopularMovieSlide";
+import TopRatedMovieSlide from "../../pages/Homepage/components/TopRatedMovieSlide/TopRatedMovieSlide";
+import UpcomingMovieSlide from "../../pages/Homepage/components/UpcomingMovieSlide/UpcomingMovieSlide";
 import { Badge } from "react-bootstrap";
 import { FaBan } from "react-icons/fa";
 import { LuBaby } from "react-icons/lu";
+import { useMovieGenreQuery } from "../../hooks/useMovieGenre";
 
 const MovieCard = ({ movie }) => {
+  // data이름 특별하게 재정의
+  const { data: genreData } = useMovieGenreQuery();
+
+  const showGenre = (genreIdList) => {
+    if (!genreIdList) return [];
+    const genreNameList = genreIdList.map((id) => {
+      const genreObj = genreData.find((genre) => genre.id === id);
+      return genreObj.name;
+    });
+
+    return genreNameList;
+  };
+
   return (
     <div
       style={{
@@ -20,9 +34,9 @@ const MovieCard = ({ movie }) => {
     >
       <div className="overlay">
         <h1>{movie.title}</h1>
-        {movie.genre_ids.map((id) => (
+        {showGenre(movie.genre_ids).map((genre, index) => (
           <Badge className="genre-badge" bg="danger">
-            {id}
+            {genre}
           </Badge>
         ))}
         <div>
