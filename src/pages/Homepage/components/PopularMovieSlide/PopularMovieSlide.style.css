@@ -1,0 +1,14 @@
+.carousel-container {
+  overflow: hidden;
+  height: 440px;
+}
+
+.movies-wrap h3 {
+  margin-top: 30px;
+  margin-left: 40px;
+  font-weight: bold;
+}
+
+.carousel-item-wrapper {
+  padding: 0 6px;
+}

@@ -1,0 +1,66 @@
+.movie-card {
+  /* 카드 비율 맞추기 */
+  width: 100%;
+  height: 330px;
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+  border-radius: 10px;
+}
+
+.overlay {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  background: rgba(43, 41, 41, 0.9);
+  opacity: 0;
+  transition: all 0.8s;
+  color: white;
+  font-weight: bold;
+  overflow-wrap: break-word;
+  padding: 15px;
+}
+
+.overlay:hover {
+  opacity: 1;
+}
+
+.movie-card:hover {
+  transform: scale(1.3) translateZ(20px);
+  z-index: 2;
+}
+
+.overlay h1 {
+  font-size: 1.5rem;
+}
+
+.genre-badge {
+  font-size: 10px;
+  margin-right: 5px;
+  margin-bottom: 9px;
+}
+
+.age-icon {
+  font-size: 12px;
+  padding: 6px;
+  border-radius: 50%;
+  color: white;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 7px;
+}
+
+.age-icon.adult {
+  background-color: crimson;
+}
+
+.age-icon.general {
+  background-color: seagreen;
+}
+
+.movie-card-score {
+  margin-bottom: 5px;
+  font-size: 10px;
+}

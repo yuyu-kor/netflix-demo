@@ -28,6 +28,14 @@
   z-index: 2;
 }
 
+.banner-play-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 1rem;
+}
+
 /* banner 안 text 흘러 넘치지 않게 */
 @media (max-width: 630px) {
   .banner-text-area {

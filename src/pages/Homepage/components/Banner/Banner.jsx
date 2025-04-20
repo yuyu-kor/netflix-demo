@@ -2,6 +2,8 @@ import React from "react";
 import { usePopularMoviesQuery } from "../../../../hooks/usePopularMovies";
 import { Alert } from "bootstrap";
 import "./Banner.style.css";
+import Button from "react-bootstrap/Button";
+import { FaPlay } from "react-icons/fa";
 
 const Banner = () => {
   const { data, isLoading, isError, error } = usePopularMoviesQuery();
@@ -24,6 +26,12 @@ const Banner = () => {
         <h1>{data?.results[0].title}</h1>
         <p>{data?.results[0].release_date}</p>
         <p>{data?.results[0].overview}</p>
+        <div>
+          <Button className="banner-play-btn" variant="light" size="lg">
+            <FaPlay />
+            재생
+          </Button>
+        </div>
       </div>
     </div>
   );
