@@ -38,14 +38,18 @@ const MoviePage = () => {
 
   const keyword = query.get("q");
 
+  // 키워드 검색 시, pagination 초기화
+  useEffect(() => {
+    if (keyword) {
+      setPage(1);
+      setSortOption("default");
+      setSelectedGenre(null);
+    }
+  }, [keyword]);
+
   // 키워드 없이 검색 시, 원래 리스트로
   useEffect(() => {
     if (!keyword) return navigate("/movies");
-  }, [keyword]);
-
-  // 키워드 검색 시, pagination 초기화
-  useEffect(() => {
-    if (keyword) return setPage(1);
   }, [keyword]);
 
   const { data, isLoading, isError, error } = useSearchMovieQuery({
