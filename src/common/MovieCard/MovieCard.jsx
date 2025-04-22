@@ -13,7 +13,7 @@ const MovieCard = ({ movie }) => {
   const { data: genreData } = useMovieGenreQuery();
 
   const showGenre = (genreIdList) => {
-    if (!genreIdList) return [];
+    if (!genreIdList || !genreIdList) return [];
     const genreNameList = genreIdList.map((id) => {
       const genreObj = genreData?.find((genre) => genre.id === id);
       return genreObj?.name;
@@ -43,7 +43,9 @@ const MovieCard = ({ movie }) => {
           <div className={`age-icon ${movie.adult ? "adult" : "general"}`}>
             {movie.adult ? <FaBan /> : <LuBaby />}
           </div>
-          <div className="movie-card-score">rating {movie.vote_average}</div>
+          <div className="movie-card-score">
+            rating {Math.round(movie.vote_average * 10) / 10}
+          </div>
           <div className="movie-card-score">popularity {movie.popularity}</div>
         </div>
       </div>

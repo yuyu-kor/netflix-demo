@@ -7,6 +7,7 @@
   cursor: pointer;
   transition: transform 0.2s ease-in-out;
   border-radius: 10px;
+  margin-bottom: 24px;
 }
 
 .overlay {
@@ -63,4 +64,10 @@
 .movie-card-score {
   margin-bottom: 5px;
   font-size: 10px;
+}
+
+@media (max-width: 576px) {
+  .movie-card:hover {
+    transform: scale(1.1); /* 모바일에서는 확대 없앰 */
+  }
 }

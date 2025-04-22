@@ -14,7 +14,7 @@ const MovieSlider = ({ title, movie, responsive }) => {
         itemClass="carousel-item-wrapper" //item 간격
         containerClass="carousel-container"
         responsive={responsive}
-        slidesToSlide={6}
+        // slidesToSlide={6}
       >
         {movie.map((movie, index) => (
           <MovieCard movie={movie} key={index} />

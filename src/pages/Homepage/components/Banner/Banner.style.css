@@ -36,6 +36,13 @@
   font-size: 1rem;
 }
 
+.spinner-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60vh;
+}
+
 /* banner 안 text 흘러 넘치지 않게 */
 @media (max-width: 630px) {
   .banner-text-area {

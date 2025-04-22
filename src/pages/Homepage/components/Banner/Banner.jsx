@@ -1,15 +1,23 @@
 import React from "react";
 import { usePopularMoviesQuery } from "../../../../hooks/usePopularMovies";
-import { Alert } from "bootstrap";
 import "./Banner.style.css";
-import Button from "react-bootstrap/Button";
 import { FaPlay } from "react-icons/fa";
+import { Alert, Spinner, Button } from "react-bootstrap";
 
 const Banner = () => {
   const { data, isLoading, isError, error } = usePopularMoviesQuery();
   console.log("ddd", data);
 
-  if (isLoading) return <h1>Loading...</h1>;
+  if (isLoading)
+    return (
+      <div className="spinner-wrap">
+        <Spinner
+          animation="border"
+          variant="danger"
+          style={{ width: "4rem", height: "4rem" }}
+        />
+      </div>
+    );
   if (isError) return <Alert variant="danger">{error.message}</Alert>;
 
   return (
