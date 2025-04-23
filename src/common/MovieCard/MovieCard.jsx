@@ -7,10 +7,18 @@ import { Badge } from "react-bootstrap";
 import { FaBan } from "react-icons/fa";
 import { LuBaby } from "react-icons/lu";
 import { useMovieGenreQuery } from "../../hooks/useMovieGenre";
+import { useNavigate } from "react-router-dom";
 
-const MovieCard = ({ movie }) => {
+const MovieCard = ({ movie, clickable = false }) => {
   // data이름 특별하게 재정의
   const { data: genreData } = useMovieGenreQuery();
+  const navigate = useNavigate();
+
+  const moveToDetailPage = () => {
+    if (clickable) {
+      navigate(`/movies/${movie.id}`);
+    }
+  };
 
   const showGenre = (genreIdList) => {
     if (!genreIdList || !genreIdList) return [];
@@ -31,6 +39,7 @@ const MovieCard = ({ movie }) => {
           ")",
       }}
       className="movie-card"
+      onClick={moveToDetailPage}
     >
       <div className="overlay">
         <h1>{movie.title}</h1>

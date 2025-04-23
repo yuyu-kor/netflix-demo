@@ -14,7 +14,7 @@ const AppLayout = () => {
   const searchByKeyword = (event) => {
     event.preventDefault();
     // url 바꿔주기
-    navigate(`/movies?q=${keyword}`);
+    navigate(`/movies?q=${keyword}&t=${Date.now()}`);
     setKeyword("");
   };
 

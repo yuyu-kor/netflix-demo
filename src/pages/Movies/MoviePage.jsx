@@ -38,19 +38,19 @@ const MoviePage = () => {
 
   const keyword = query.get("q");
 
-  // 키워드 검색 시, pagination 초기화
   useEffect(() => {
-    if (keyword) {
+    const currentKeyword = query.get("q");
+    if (!currentKeyword) {
+      setPage(1);
+      setSortOption("default");
+      setSelectedGenre(null);
+      navigate("/movies");
+    } else {
       setPage(1);
       setSortOption("default");
       setSelectedGenre(null);
     }
-  }, [keyword]);
-
-  // 키워드 없이 검색 시, 원래 리스트로
-  useEffect(() => {
-    if (!keyword) return navigate("/movies");
-  }, [keyword]);
+  }, [query.toString()]);
 
   const { data, isLoading, isError, error } = useSearchMovieQuery({
     keyword,
@@ -137,7 +137,7 @@ const MoviePage = () => {
             ) : (
               filteredMovies?.map((movie, index) => (
                 <Col key={index} lg={3} xs={6}>
-                  <MovieCard movie={movie} />
+                  <MovieCard movie={movie} clickable />
                 </Col>
               ))
             )}
