@@ -1,11 +1,11 @@
 import React from "react";
-import Banner from "../Homepage/components/Banner/Banner";
 import MovieDetailInfo from "./components/MovieDetailInfo/MovieDetailInfo";
 import RelatedMovieSlider from "./components/RelatedMovieSlider/RelatedMovieSlider";
 import Reviews from "./components/Reviews/Reviews";
 import { useParams } from "react-router-dom";
 import { useMovieDetailQuery } from "../../hooks/useMovieDetail";
 import { Alert } from "react-bootstrap";
+import MovieDetailBanner from "./components/MovieDetailBanner/MovieDetailBanner";
 
 const MovieDetailPage = () => {
   let { id } = useParams();
@@ -17,11 +17,11 @@ const MovieDetailPage = () => {
   if (isError) return <Alert variant="danger">{error.message}</Alert>;
 
   return (
-    <div>
-      <Banner />
+    <div className="d-flex flex-column justify-content-center">
+      <MovieDetailBanner movie={data} />
       <MovieDetailInfo movie={data} />
-      <RelatedMovieSlider />
       <Reviews />
+      <RelatedMovieSlider />
     </div>
   );
 };

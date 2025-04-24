@@ -25,6 +25,7 @@ const AppLayout = () => {
         className="custom-navbar"
         bg="black"
         data-bs-theme="dark"
+        S
       >
         <Container fluid>
           <Navbar.Brand href="/">

@@ -44,7 +44,7 @@ const MovieCard = ({ movie, clickable = false }) => {
       <div className="overlay">
         <h1>{movie.title}</h1>
         {showGenre(movie.genre_ids).map((genre, index) => (
-          <Badge className="genre-badge" bg="danger">
+          <Badge className="genre-badge" bg="danger" key={index}>
             {genre}
           </Badge>
         ))}
@@ -53,7 +53,7 @@ const MovieCard = ({ movie, clickable = false }) => {
             {movie.adult ? <FaBan /> : <LuBaby />}
           </div>
           <div className="movie-card-score">
-            rating {Math.round(movie.vote_average * 10) / 10}
+            ⭐rating {Math.round(movie.vote_average * 10) / 10}
           </div>
           <div className="movie-card-score">popularity {movie.popularity}</div>
         </div>

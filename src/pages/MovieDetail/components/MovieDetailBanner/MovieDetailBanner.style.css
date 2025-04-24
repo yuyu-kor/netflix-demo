@@ -1,0 +1,73 @@
+.banner-play-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 1rem;
+}
+
+.banner {
+  height: 60vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* 배너 앞 그라디언트 */
+.banner::before {
+  content: "";
+  background: linear-gradient(to top, black, transparent);
+  height: 60vh;
+  width: 100%;
+  position: absolute;
+  left: 0;
+}
+
+.banner-text-area {
+  width: 37%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  padding: 2rem;
+}
+
+.banner-text-area > * {
+  z-index: 2;
+}
+
+.banner-play-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 1rem;
+}
+
+.spinner-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60vh;
+}
+
+.modal-transparent-content {
+  width: 660px; /* 유튜브 너비 640 + 좌우 약간 여백 */
+  max-width: 660px;
+  margin: auto;
+}
+
+.modal-no-padding .modal-content {
+  background-color: black;
+}
+
+.modal-header .btn-close {
+  filter: invert(1); /* 흑백 반전 → 하얀색으로 */
+}
+
+/* banner 안 text 흘러 넘치지 않게 */
+@media (max-width: 630px) {
+  .banner-text-area {
+    width: 100%;
+  }
+}

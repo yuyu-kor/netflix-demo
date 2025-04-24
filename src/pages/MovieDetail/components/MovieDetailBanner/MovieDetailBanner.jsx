@@ -1,20 +1,18 @@
 import React, { useState } from "react";
-import { usePopularMoviesQuery } from "../../../../hooks/usePopularMovies";
-import "./Banner.style.css";
+import "./MovieDetailBanner.style.css";
 import { FaPlay } from "react-icons/fa";
 import { Alert, Spinner, Button, Modal } from "react-bootstrap";
+import { useMovieDetailQuery } from "../../../../hooks/useMovieDetail";
 import YouTube from "react-youtube";
 import { useMovieVideoQuery } from "../../../../hooks/useMovieVideo";
 
-const Banner = () => {
-  const { data, isLoading, isError, error } = usePopularMoviesQuery();
+const MovieDetailBanner = ({ movie }) => {
   const [show, setShow] = useState(false);
-
-  const featuredMovie = data?.results?.[0];
-  const { data: video } = useMovieVideoQuery(featuredMovie?.id);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const { data: video } = useMovieVideoQuery(movie?.id);
 
   const opts = {
     height: "390",
@@ -24,32 +22,16 @@ const Banner = () => {
     },
   };
 
-  if (isLoading)
-    return (
-      <div className="spinner-wrap">
-        <Spinner
-          animation="border"
-          variant="danger"
-          style={{ width: "4rem", height: "4rem" }}
-        />
-      </div>
-    );
-  if (isError) return <Alert variant="danger">{error.message}</Alert>;
-
   return (
     <div
       style={{
-        backgroundImage:
-          "url(" +
-          `https://media.themoviedb.org/t/p/w1066_and_h600_bestv2/${data.results[0].poster_path}` +
-          ")",
+        backgroundImage: `url(https://media.themoviedb.org/t/p/w780${movie?.poster_path})`,
       }}
       className="banner"
     >
       <div className="text-white banner-text-area">
-        <h1>{data?.results[0].title}</h1>
-        <p>{data?.results[0].release_date}</p>
-        <p>{data?.results[0].overview}</p>
+        <h1>{movie?.title}</h1>
+        <p>{movie?.overview}</p>
         <div>
           <Button
             variant="light"
@@ -84,4 +66,4 @@ const Banner = () => {
   );
 };
 
-export default Banner;
+export default MovieDetailBanner;

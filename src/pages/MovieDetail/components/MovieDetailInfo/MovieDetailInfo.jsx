@@ -1,10 +1,11 @@
 import React from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { Badge, Col, Container, Row } from "react-bootstrap";
+import { useMovieGenreQuery } from "../../../../hooks/useMovieGenre";
 
 const MovieDetailInfo = ({ movie }) => {
   return (
     <Container>
-      <Row>
+      <Row className="mb-5">
         <Col lg={6} xs={12}>
           <div
             style={{
@@ -16,7 +17,22 @@ const MovieDetailInfo = ({ movie }) => {
             }}
           ></div>
         </Col>
-        <Col lg={6} xs={12}></Col>
+        <Col lg={6} xs={12}>
+          <div>
+            {movie.genres?.map((genre) => (
+              <Badge key={genre.id} className="genre-badge me-1" bg="danger">
+                {genre.name}
+              </Badge>
+            ))}
+          </div>
+          <h2>{movie?.title}</h2>
+          <p>
+            {movie?.release_date} <span className="mx-2">|</span>{" "}
+            {movie?.runtime}분
+          </p>
+          <p>⭐{Math.round(movie?.vote_average * 10) / 10}</p>
+          <p>{movie?.overview}</p>
+        </Col>
       </Row>
     </Container>
   );

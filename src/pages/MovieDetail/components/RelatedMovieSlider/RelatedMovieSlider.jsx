@@ -1,7 +1,27 @@
 import React from "react";
+import { useMovieRecommendation } from "../../../../hooks/useMovieRecommendation";
+import { Alert, Container } from "react-bootstrap";
+import { useParams } from "react-router-dom";
+import MovieSlider from "../../../../common/MovieSlider/MovieSlider";
+import { responsive } from "../../../../constants/responsive";
 
 const RelatedMovieSlider = () => {
-  return <div>RelatedMovieSlider</div>;
+  let { id } = useParams();
+  const { data, isLoading, isError, error } = useMovieRecommendation(id);
+  console.log("sususu", data);
+
+  if (isLoading) return <h1>isLoading...</h1>;
+  if (isError) return <Alert variant="danger">{error.message}</Alert>;
+
+  return (
+    <Container>
+      <MovieSlider
+        title="Related Movies"
+        movie={data.results || []}
+        responsive={responsive}
+      />
+    </Container>
+  );
 };
 
 export default RelatedMovieSlider;
