@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { useSearchMovieQuery } from "../../hooks/useSearchMovie";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { Alert, Col, Container, Row } from "react-bootstrap";
@@ -9,6 +9,7 @@ import ButtonGroup from "react-bootstrap/ButtonGroup";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import { useMovieGenreQuery } from "../../hooks/useMovieGenre";
+import LoadingSpinner from "../../common/LoadingSpinner/LoadingSpinner";
 
 //MoviePage에 올 수 있는 경로 2가지
 //navbar에서 클릭해서 온 경우(키워드x) => popular movie 보여주기 (원랜 백엔드 영역)
@@ -91,81 +92,87 @@ const MoviePage = () => {
   const filteredMovies = filteredMoviesByGenre(sortedMovies, selectedGenre);
 
   return (
-    <Container>
-      <Row>
-        <Col className="btn-container">
-          <DropdownButton
-            id="dropdown-basic-button"
-            title="Sort By"
-            variant="danger"
-            className="sort-btn"
-          >
-            <Dropdown.Item onClick={() => setSortOption("popularity")}>
-              Popularity
-            </Dropdown.Item>
-            <Dropdown.Item onClick={() => setSortOption("rating")}>
-              Rating
-            </Dropdown.Item>
-            <Dropdown.Item onClick={() => setSortOption("release_date")}>
-              Release Date
-            </Dropdown.Item>
-          </DropdownButton>
-          <Col>
-            <DropdownButton title="Genre" variant="danger" className="sort-btn">
-              <Dropdown.Item onClick={() => setSelectedGenre(null)}>
-                All
+    <Suspense fallback={<LoadingSpinner />}>
+      <Container>
+        <Row>
+          <Col className="btn-container">
+            <DropdownButton
+              id="dropdown-basic-button"
+              title="Sort By"
+              variant="danger"
+              className="sort-btn"
+            >
+              <Dropdown.Item onClick={() => setSortOption("popularity")}>
+                Popularity
               </Dropdown.Item>
-              {genreList?.map((genre) => (
-                <Dropdown.Item
-                  key={genre.id}
-                  onClick={() => setSelectedGenre(genre.id)}
-                >
-                  {genre.name}
-                </Dropdown.Item>
-              ))}
+              <Dropdown.Item onClick={() => setSortOption("rating")}>
+                Rating
+              </Dropdown.Item>
+              <Dropdown.Item onClick={() => setSortOption("release_date")}>
+                Release Date
+              </Dropdown.Item>
             </DropdownButton>
+            <Col>
+              <DropdownButton
+                title="Genre"
+                variant="danger"
+                className="sort-btn"
+              >
+                <Dropdown.Item onClick={() => setSelectedGenre(null)}>
+                  All
+                </Dropdown.Item>
+                {genreList?.map((genre) => (
+                  <Dropdown.Item
+                    key={genre.id}
+                    onClick={() => setSelectedGenre(genre.id)}
+                  >
+                    {genre.name}
+                  </Dropdown.Item>
+                ))}
+              </DropdownButton>
+            </Col>
           </Col>
-        </Col>
-      </Row>
-      <Row>
-        <Col lg={12} xs={12}>
-          <Row>
-            {filteredMovies?.length === 0 ? (
-              <Col>
-                <p>검색 결과가 없습니다.</p>
-              </Col>
-            ) : (
-              filteredMovies?.map((movie, index) => (
-                <Col key={index} lg={3} xs={6}>
-                  <MovieCard movie={movie} clickable />
+        </Row>
+        <Row>
+          <Col lg={12} xs={12}>
+            <Row>
+              {filteredMovies?.length === 0 ? (
+                <Col>
+                  <p>검색 결과가 없습니다.</p>
                 </Col>
-              ))
-            )}
-          </Row>
-          <ReactPaginate
-            nextLabel=">"
-            onPageChange={handlePageClick}
-            pageRangeDisplayed={3}
-            marginPagesDisplayed={2}
-            pageCount={Math.min(data?.total_pages, 500)} //전체 페이지 수 500으로 제한
-            previousLabel="<"
-            pageClassName="page-item"
-            pageLinkClassName="page-link"
-            previousClassName="page-item"
-            previousLinkClassName="page-link"
-            nextClassName="page-item"
-            nextLinkClassName="page-link"
-            breakLabel="..."
-            breakClassName="page-item"
-            breakLinkClassName="page-link"
-            containerClassName="pagination"
-            activeClassName="active"
-            renderOnZeroPageCount={null}
-            forcePage={page - 1} //보고 있는 페이지 값 설정
-          />
-        </Col>
-      </Row>
-    </Container>
+              ) : (
+                filteredMovies?.map((movie, index) => (
+                  <Col key={index} lg={3} xs={6}>
+                    <MovieCard movie={movie} clickable />
+                  </Col>
+                ))
+              )}
+            </Row>
+            <ReactPaginate
+              nextLabel=">"
+              onPageChange={handlePageClick}
+              pageRangeDisplayed={3}
+              marginPagesDisplayed={2}
+              pageCount={Math.min(data?.total_pages, 500)} //전체 페이지 수 500으로 제한
+              previousLabel="<"
+              pageClassName="page-item"
+              pageLinkClassName="page-link"
+              previousClassName="page-item"
+              previousLinkClassName="page-link"
+              nextClassName="page-item"
+              nextLinkClassName="page-link"
+              breakLabel="..."
+              breakClassName="page-item"
+              breakLinkClassName="page-link"
+              containerClassName="pagination"
+              activeClassName="active"
+              renderOnZeroPageCount={null}
+              forcePage={page - 1} //보고 있는 페이지 값 설정
+            />
+          </Col>
+        </Row>
+      </Container>
+    </Suspense>
   );
 };
 

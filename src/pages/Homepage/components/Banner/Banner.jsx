@@ -7,7 +7,7 @@ import YouTube from "react-youtube";
 import { useMovieVideoQuery } from "../../../../hooks/useMovieVideo";
 
 const Banner = () => {
-  const { data, isLoading, isError, error } = usePopularMoviesQuery();
+  const { data, isError, error } = usePopularMoviesQuery();
   const [show, setShow] = useState(false);
 
   const featuredMovie = data?.results?.[0];
@@ -24,16 +24,6 @@ const Banner = () => {
     },
   };
 
-  if (isLoading)
-    return (
-      <div className="spinner-wrap">
-        <Spinner
-          animation="border"
-          variant="danger"
-          style={{ width: "4rem", height: "4rem" }}
-        />
-      </div>
-    );
   if (isError) return <Alert variant="danger">{error.message}</Alert>;
 
   return (

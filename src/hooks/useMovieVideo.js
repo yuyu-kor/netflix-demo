@@ -13,5 +13,6 @@ export const useMovieVideoQuery = (movieId) => {
       data.data.results.find(
         (video) => video.site === "YouTube" && video.type === "Trailer"
       ), //첫 번째 예고편만 선택
+    suspense: true,
   });
 };

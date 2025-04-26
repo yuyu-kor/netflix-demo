@@ -7,10 +7,9 @@ import { responsive } from "../../../../constants/responsive";
 
 const RelatedMovieSlider = () => {
   let { id } = useParams();
-  const { data, isLoading, isError, error } = useMovieRecommendation(id);
+  const { data, isError, error } = useMovieRecommendation(id);
   console.log("sususu", data);
 
-  if (isLoading) return <h1>isLoading...</h1>;
   if (isError) return <Alert variant="danger">{error.message}</Alert>;
 
   return (

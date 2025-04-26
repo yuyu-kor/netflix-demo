@@ -1,6 +1,5 @@
 import React from "react";
 import { Badge, Col, Container, Row } from "react-bootstrap";
-import { useMovieGenreQuery } from "../../../../hooks/useMovieGenre";
 
 const MovieDetailInfo = ({ movie }) => {
   return (

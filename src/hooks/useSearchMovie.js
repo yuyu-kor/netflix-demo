@@ -12,5 +12,6 @@ export const useSearchMovieQuery = ({ keyword, page }) => {
     queryKey: ["search-movie", keyword, page], //keyword에 따라 유니크한 이름 지정
     queryFn: () => fetchSearchMovie({ keyword, page }),
     select: (result) => result.data,
+    suspense: true,
   });
 };

@@ -1,70 +1,48 @@
-# Getting Started with Create React App
+# 🎬 Netflix Clone
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+넷플릭스와 비슷한 UI로 구현한 **영화 정보 제공 웹앱**입니다.
+React 기반으로 제작되었으며, 인기 영화, 평점 높은 영화, 개봉 영화, 상세 페이지 이동, 로딩 및 에러 처리 등
+**넷플릭스 스타일의 주요 기능**을 갖추고 있습니다.
 
-## Available Scripts
+👉 **[배포된 앱 바로가기](https://netflix-demo-mu.vercel.app/)**
 
-In the project directory, you can run:
+## 💡 주요 기능
 
-### `npm start`
+- 메인 페이지에 인기 영화 / 평점 높은 영화 / 개봉 예정 영화 슬라이드별 노출
+- 각 영화 클릭 시 상세 페이지 이동 및 상세 정보 조회
+- 로딩 스피너 (Suspense 활용)을 통한 데이터 요청 중 상태 표시
+- 검색 기능: 키워드로 영화 검색 가능
+  1. 검색 결과 정렬 옵션 (인기순, 평점순, 개봉일순)
+  2. 카테고리 필터링 기능 (장르별 필터링)
+- 반응형 UI 적용 (React Bootstrap을 활용해 PC/태블릿/모바일 최적화)
+- 환경 변수 관리: .env 파일을 통한 TMDB API 키 보호
+- 컴포넌트 기반 설계로 유지보수성과 재사용성 강화
+- React Query를 통한 서버 상태 관리 (fetch, cache, error handling)
+- Axios를 통한 TMDB API 호출 및 토큰 인증 처리
+- 404 NotFoundPage 구현: 잘못된 URL 접근 시 사용자 친화적인 안내 페이지 제공
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 🛠️ 사용 기술 스택
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- React
+- JavaScript (ES6+)
+- React Router DOM – 페이지 라우팅
+- Axios – API 통신
+- React Query – 서버 상태 관리
+- React Bootstrap – UI 컴포넌트 및 그리드 시스템
+- Suspense – 비동기 컴포넌트 로딩
+- Zustand – 전역 상태 관리 (확장성 고려)
+- CSS – 커스텀 스타일링
+- Vercel – 정적 배포
 
-### `npm test`
+## 🔄 향후 업데이트 예정
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- 무한 스크롤 (Infinite Scroll) 기능 추가
+- 로그인 및 개인 추천 기능 구현
+- 다크모드 / 라이트모드 테마 전환 기능
+- 에러 메시지 처리 (Error Boundary 활용)
+- 영화 찜하기(My List) 기능
 
-### `npm run build`
+## 👩‍💻 만든 사람
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+이유진 (@yuyu-kor)
+응원과 피드백 언제든 환영 ✨
